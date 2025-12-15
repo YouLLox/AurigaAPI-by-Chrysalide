@@ -56,10 +56,13 @@ Une fois les données synchronisées, vous pouvez utiliser les méthodes suivant
 
 **📅 Syllabus (Programme)**
 
-- `aurigaAPI.getAllSyllabus` : Retourne tout le syllabus.
+- `aurigaAPI.getAllSyllabus` : Retourne tout le syllabus (fusionne tous les semestres configurés).
 - `aurigaAPI.getSyllabusByCode(code)`
 - `aurigaAPI.getSyllabusByUE(ue)`
+- `aurigaAPI.getSyllabusBySemester(semester)` : Retourne les cours d'un semestre donné (ex: "03").
 - `aurigaAPI.getSyllabusByStartDate(date)`
+
+_Les objets syllabus contiennent désormais les crédits ECTS et le numéro de semestre._
 
 **👤 Données Utilisateur**
 L'API donne accès à des objets complets pour l'étudiant et ses proches.
