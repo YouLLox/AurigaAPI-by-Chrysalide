@@ -25,24 +25,23 @@ Ce module est conçu pour :
 
 ### Initialisation
 
-Instanciez simplement la classe sans paramètre.
+Instanciez la classe avec votre token d'API.
 
 ```javascript
-const aurigaAPI = new AurigaAPI();
+const myToken = "VOTRE_TOKEN_BEARER_ICI";
+const aurigaAPI = new AurigaAPI(myToken);
 ```
 
 ### Synchronisation des Données
 
-Pour lancer la récupération des données, appelez la méthode `create` en passant votre token en paramètre.
+Pour lancer la récupération et la synchronisation des données, appelez simplement la méthode `create`.
 
 ```javascript
-const myToken = "VOTRE_TOKEN_BEARER_ICI";
-await aurigaAPI.create(myToken);
+await aurigaAPI.create();
 ```
 
-Une fois le token fourni une première fois via `create`, il est mémorisé par l'instance pour les appels futurs (si vous en faites).
-
-_Note : Cette méthode télécharge les données dans `dataExtract/` puis génère les fichiers propres dans `dataSync/`._
+_Note : Cette méthode télécharge les données temporairement dans `dataExtract/`, génère les fichiers formattés dans `dataSync/`, puis supprime le dossier `dataExtract/`._
+_En cas d'erreur (affichée en anglais dans la console), le dossier temporaire est également nettoyé._
 
 ### Lecture des Données
 
@@ -73,6 +72,6 @@ L'API donne accès à des objets complets pour l'étudiant et ses proches.
 
 ## Structure des Dossiers
 
-- `dataExtract/` : Contient les réponses brutes de l'API Auriga.
+- `dataExtract/` : Dossier temporaire contenant les réponses brutes de l'API Auriga (supprimé après synchronisation).
 - `dataSync/` : Contient les fichiers JSON formatés et simplifiés, prêts à être utilisés par votre application.
 - `payloads/` : Contient les configurations de recherche pour l'API.
