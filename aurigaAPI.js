@@ -619,9 +619,9 @@ class AurigaAPI {
             }
           }
           currentContent.push(data);
-          fs.writeFileSync(file, JSON.stringify(currentContent, null, 2));
+          await fs.promises.writeFile(file, JSON.stringify(currentContent, null, 2));
         } else {
-          fs.writeFileSync(file, JSON.stringify(data, null, 2));
+          await fs.promises.writeFile(file, JSON.stringify(data, null, 2));
         }
         return true;
       };
@@ -657,11 +657,11 @@ class AurigaAPI {
       await postDataToAuriga("menuEntries/1036/searchResult?size=100&page=1&sort=id&disableWarnings=true", gradesPayload, this.PATHS.EXTRACT.GRADES);
 
       await this.#dataSync();
-      //await fs.promises.rm("./dataExtract", { recursive: true, force: true });
+      await fs.promises.rm("./dataExtract", { recursive: true, force: true });
 
     } catch (error) {
       console.error("Error during creation/synchronization:", error);
-      //await fs.promises.rm("./dataExtract", { recursive: true, force: true });
+      await fs.promises.rm("./dataExtract", { recursive: true, force: true });
       return false;
     }
     return true;
