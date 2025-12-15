@@ -320,15 +320,6 @@ class AurigaAPI {
   }
 
   /**
-   * Return a list of syllabus by time
-   * @param {number} time 
-   * @returns {Array<syllabus>}
-   */
-  getSyllabusByTime(time) {
-    return this.getAllSyllabus.filter(element => element.time === time);
-  }
-
-  /**
    * Return a list of syllabus by semester
    * @param {number} semester 
    * @returns {Array<syllabus>}

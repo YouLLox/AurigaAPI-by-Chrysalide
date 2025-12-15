@@ -65,7 +65,6 @@ Une fois les données synchronisées, vous pouvez utiliser les méthodes suivant
 - `aurigaAPI.getSyllabusBySemester(semester)` : Retourne les cours d'un semestre donné (ex: 3).
 - `aurigaAPI.getSyllabusByStartDate(date)`
 - `aurigaAPI.getSyllabusByEndDate(date)`
-- `aurigaAPI.getSyllabusByTime(time)`
 
 _Les objets syllabus et grades contiennent désormais le numéro de semestre._
 
