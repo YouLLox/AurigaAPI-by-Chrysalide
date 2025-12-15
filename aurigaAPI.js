@@ -155,7 +155,7 @@ class AurigaAPI {
                 "time": element[6],
                 "name": element[2],
                 "UE": String(element[2]).split("_")[5],
-                "semester": String(element[2]).split("_")[4].split("S")[1],
+                "semester": parseInt(String(element[2]).split("_")[4].split("S")[1]),
                 "nameFr": element[3].fr,
                 "credits": element[7],
                 "startDate": element[4],
@@ -277,7 +277,7 @@ class AurigaAPI {
             await postDataToAuriga("menuEntries/166/searchResult?size=100&page=1&sort=id", syllabusPayload2, this.PATHS.EXTRACT.SYLLABUS2);
             await postDataToAuriga("menuEntries/1036/searchResult?size=100&page=1&sort=id&disableWarnings=true", gradesPayload, this.PATHS.EXTRACT.GRADES);
             await this.#dataSync();
-            //await fs.promises.rm("./dataExtract", { recursive: true, force: true });
+            await fs.promises.rm("./dataExtract", { recursive: true, force: true });
 
         } catch (error) {
             console.error("Error during creation/synchronization:", error);
