@@ -189,7 +189,6 @@ class AurigaAPI {
     },
     PAYLOADS: {
       SYLLABUS: "payloads/syllabusPayload.json",
-      SYLLABUS2: "payloads/syllabus2Payload.json",
       GRADES: "payloads/gradesPayload.json"
     }
   };
@@ -401,13 +400,12 @@ class AurigaAPI {
         "grade": parseFloat(element[1])
       }
     }), null, 2));
-
     fs.writeFileSync(this.PATHS.SYNC.SYLLABUS, JSON.stringify(syllabus.map(element => {
       return {
         "id": element.id,
-        "UE": String(element.documents[0].fileName).split("_")[5],
-        "semester": parseInt(String(element.documents[0].fileName).split("_")[4].split("S")[1]),
-        "name": element.documents[0].fileName,
+        "UE": element.documents?.[0]?.fileName ? String(element.documents?.[0]?.fileName).split("_")[5] : null,
+        "semester": element.documents?.[0]?.fileName ? parseInt(String(element.documents?.[0]?.fileName).split("_")[4].split("S")[1]) : null,
+        "name": element.documents?.[0]?.fileName ? element.documents?.[0]?.fileName : null,
         "code": element.field.code,
         "minScore": element.customAttributes.miniScore,
         "duration": element.duration,
@@ -546,7 +544,6 @@ class AurigaAPI {
 
   async #getSyllabuses() {
     const syllabusPayload = this._readJsonFile(this.PATHS.PAYLOADS.SYLLABUS);
-    const syllabusPayload2 = this._readJsonFile(this.PATHS.PAYLOADS.SYLLABUS2);
     const url = "menuEntries/166/searchResult?size=100&page=1&sort=id";
 
     const sylabuses = [];
@@ -568,11 +565,24 @@ class AurigaAPI {
       sylabuses.push(...data.content.lines.map(line => line[0]));
     };
 
-    if (!syllabusPayload || !syllabusPayload2) {
+    if (!syllabusPayload) {
       throw new Error("Payloads not found. Check the payloads folder.");
     }
-    await postDataToAuriga(url, syllabusPayload);
-    await postDataToAuriga(url, syllabusPayload2);
+
+    const response = await fetch(`https://auriga.epita.fr/api/menuEntries/166/courseCatalogDefinitions?sortBy=code,asc`, {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + this.#acces_token
+      }
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch data from Auriga API");
+    }
+    const data = await response.json();
+    for (const element of data.content) {
+      syllabusPayload.searchResultDefinition.filtersCustom.id = element.id;
+      await postDataToAuriga(url, syllabusPayload);
+    }
 
     return [...new Set(sylabuses)];
   }
@@ -584,6 +594,19 @@ class AurigaAPI {
     }
 
     try {
+      const response = await fetch(`https://auriga.epita.fr/api/plannings/me?days=1&days=2&days=3&days=4&days=5&days=6&days=7&startDate=2026-01-10&endDate=2026-01-30`, {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + this.#acces_token
+        }
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch data from Auriga API");
+      }
+      const data = await response.json();
+
+      await fs.promises.writeFile("./dataExtract/edt.json", JSON.stringify(data, null, 2));
+
       const getDataFromAuriga = async (endpoint, file) => {
         const response = await fetch(`https://auriga.epita.fr/api/${endpoint}`, {
           method: "GET",
@@ -637,9 +660,9 @@ class AurigaAPI {
       await getDataFromAuriga("me", this.PATHS.EXTRACT.USERDATA);
 
       const sylabuses = await this.#getSyllabuses();
-      sylabuses.forEach(element => {
-        getDataFromAuriga(`menuEntries/166/syllabuses/${element}`, this.PATHS.EXTRACT.SYLLABUS);
-      });
+      for (const element of sylabuses) {
+        await getDataFromAuriga(`menuEntries/166/syllabuses/${element}`, this.PATHS.EXTRACT.SYLLABUS);
+      }
 
       const gradesPayload = this._readJsonFile(this.PATHS.PAYLOADS.GRADES);
       if (!gradesPayload) {
@@ -648,13 +671,14 @@ class AurigaAPI {
       await postDataToAuriga("menuEntries/1036/searchResult?size=100&page=1&sort=id&disableWarnings=true", gradesPayload, this.PATHS.EXTRACT.GRADES);
 
       await this.#dataSync();
-      await fs.promises.rm("./dataExtract", { recursive: true, force: true });
+      //await fs.promises.rm("./dataExtract", { recursive: true, force: true });
 
     } catch (error) {
       console.error("Error during creation/synchronization:", error);
-      await fs.promises.rm("./dataExtract", { recursive: true, force: true });
+      //await fs.promises.rm("./dataExtract", { recursive: true, force: true });
       return false;
     }
     return true;
   }
 }
+
