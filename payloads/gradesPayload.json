@@ -44,7 +44,7 @@
                 "children": [
                     {
                         "guid": "ca3f754b-7e08-44e2-a533-c0c0dcc60843",
-                        "visible": true,
+                        "visible": false,
                         "path": "Registration-obligation",
                         "api": "obligations",
                         "field": "code",
@@ -61,7 +61,7 @@
                         "isReverted": null,
                         "type": "code",
                         "order": 0,
-                        "orderGlobal": 0,
+                        "orderGlobal": 4,
                         "excluded": null,
                         "isDisplayedInSelect": false,
                         "multilingual": false,
@@ -102,7 +102,7 @@
                                 "api": "exams",
                                 "field": "code",
                                 "label": {
-                                    "en": "Exam.Code",
+                                    "en": "Exam",
                                     "fr": "Épreuve"
                                 },
                                 "defaultLabel": {
@@ -114,7 +114,7 @@
                                 "isReverted": null,
                                 "type": "code",
                                 "order": 1,
-                                "orderGlobal": 1,
+                                "orderGlobal": 0,
                                 "excluded": null,
                                 "isDisplayedInSelect": true,
                                 "multilingual": false,
@@ -167,7 +167,7 @@
                                         "isReverted": null,
                                         "type": "code",
                                         "order": 2,
-                                        "orderGlobal": 2,
+                                        "orderGlobal": 1,
                                         "excluded": null,
                                         "isDisplayedInSelect": true,
                                         "multilingual": false,
@@ -221,8 +221,8 @@
                                         "modelDestName": null,
                                         "isReverted": null,
                                         "type": "timestamptz",
-                                        "order": 7,
-                                        "orderGlobal": 3,
+                                        "order": 12,
+                                        "orderGlobal": 8,
                                         "excluded": null,
                                         "isDisplayedInSelect": true,
                                         "multilingual": false,
@@ -250,8 +250,8 @@
                                 "modelDestName": null,
                                 "isReverted": null,
                                 "type": "date",
-                                "order": 9,
-                                "orderGlobal": 9,
+                                "order": 13,
+                                "orderGlobal": 11,
                                 "excluded": null,
                                 "isDisplayedInSelect": false,
                                 "multilingual": false,
@@ -305,7 +305,7 @@
                                 "modelDestName": null,
                                 "isReverted": null,
                                 "type": "code",
-                                "order": 11,
+                                "order": 4,
                                 "orderGlobal": 7,
                                 "excluded": null,
                                 "isDisplayedInSelect": true,
@@ -317,6 +317,53 @@
                         ]
                     }
                 ]
+            },
+            {
+                "guid": "b3639e4f-c337-415e-aff8-0d808f1a03c0",
+                "visible": true,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Mark",
+                    "fr": "Note"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 6",
+                    "fr": "Champ calculé 6"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
+                "order": 3,
+                "orderGlobal": 2,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoConcat",
+                        "parameters": [
+                            {
+                                "function": "cffRawString",
+                                "column": "a31fd9b7-eae2-48fb-9874-421c5ede9edd",
+                                "value": null,
+                                "index": 0
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": "5c47cab2-cea7-49d9-bd36-4d6f10f35e20",
+                                "value": null,
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
             },
             {
                 "guid": "2938be38-6fd0-40ba-b40f-7c9fe8401e7a",
@@ -336,8 +383,336 @@
                 "modelDestName": null,
                 "isReverted": null,
                 "type": "numeric",
+                "order": 5,
+                "orderGlobal": 9,
+                "excluded": null,
+                "isDisplayedInSelect": false,
+                "multilingual": false,
+                "isCustom": false,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "49ebeddd-19cd-4ffe-9be6-f270d73f7267",
+                "visible": false,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Calculated field 1",
+                    "fr": "NV"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 1",
+                    "fr": "Champ calculé 1"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
+                "order": 6,
+                "orderGlobal": 12,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoEqual",
+                        "parameters": [
+                            {
+                                "function": "cffRawStringForNumeric",
+                                "column": "2938be38-6fd0-40ba-b40f-7c9fe8401e7a",
+                                "value": null,
+                                "index": 0
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": null,
+                                "value": "0",
+                                "index": 1
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "cfoIfTrueThenString",
+                        "parameters": [
+                            {
+                                "function": "cffRaw",
+                                "column": null,
+                                "value": null,
+                                "index": 0,
+                                "previousOperation": true
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": null,
+                                "value": "NV",
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "04efa005-fd15-4856-b89a-6c6ddcc9e1c4",
+                "visible": false,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Calculated field 2",
+                    "fr": "VA"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 2",
+                    "fr": "Champ calculé 2"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
+                "order": 7,
+                "orderGlobal": 13,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoEqual",
+                        "parameters": [
+                            {
+                                "function": "cffRawStringForNumeric",
+                                "column": "2938be38-6fd0-40ba-b40f-7c9fe8401e7a",
+                                "value": null,
+                                "index": 0
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": null,
+                                "value": "20",
+                                "index": 1
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "cfoIfTrueThenString",
+                        "parameters": [
+                            {
+                                "function": "cffRaw",
+                                "column": null,
+                                "value": null,
+                                "index": 0,
+                                "previousOperation": true
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": null,
+                                "value": "VA",
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "2e0d05d8-6057-4ec6-b3d7-8ace62d971e9",
+                "visible": false,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Calculated field 3",
+                    "fr": "Note alpha"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 3",
+                    "fr": "Champ calculé 3"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
                 "order": 8,
-                "orderGlobal": 5,
+                "orderGlobal": 14,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoConcat",
+                        "parameters": [
+                            {
+                                "function": "cffRawString",
+                                "column": "49ebeddd-19cd-4ffe-9be6-f270d73f7267",
+                                "value": null,
+                                "index": 0
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": "04efa005-fd15-4856-b89a-6c6ddcc9e1c4",
+                                "value": null,
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "a31fd9b7-eae2-48fb-9874-421c5ede9edd",
+                "visible": false,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Calculated field 4",
+                    "fr": "Note alpha si grille VA_NV"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 4",
+                    "fr": "Champ calculé 4"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
+                "order": 9,
+                "orderGlobal": 15,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoEqual",
+                        "parameters": [
+                            {
+                                "function": "cffRawString",
+                                "column": "723620bb-8653-490c-9781-211b29875ac4",
+                                "value": null,
+                                "index": 0
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": null,
+                                "value": "VA_NV",
+                                "index": 1
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "cfoIfTrueThenString",
+                        "parameters": [
+                            {
+                                "function": "cffRaw",
+                                "column": null,
+                                "value": null,
+                                "index": 0,
+                                "previousOperation": true
+                            },
+                            {
+                                "function": "cffRawString",
+                                "column": "2e0d05d8-6057-4ec6-b3d7-8ace62d971e9",
+                                "value": null,
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "5c47cab2-cea7-49d9-bd36-4d6f10f35e20",
+                "visible": false,
+                "path": null,
+                "api": null,
+                "field": "calculatedField",
+                "label": {
+                    "en": "Calculated field 5",
+                    "fr": "Note initiale si pas de grille"
+                },
+                "defaultLabel": {
+                    "en": "Calculated field 5",
+                    "fr": "Champ calculé 5"
+                },
+                "modelName": null,
+                "modelDestName": null,
+                "isReverted": null,
+                "calculated": true,
+                "type": "string",
+                "order": 10,
+                "orderGlobal": 16,
+                "excluded": null,
+                "operations": [
+                    {
+                        "operation": "cfoIsEmpty",
+                        "parameters": [
+                            {
+                                "function": "cffRawString",
+                                "column": "723620bb-8653-490c-9781-211b29875ac4",
+                                "value": null,
+                                "index": 0
+                            }
+                        ]
+                    },
+                    {
+                        "operation": "cfoIfTrueThenString",
+                        "parameters": [
+                            {
+                                "function": "cffRaw",
+                                "column": null,
+                                "value": null,
+                                "index": 0,
+                                "previousOperation": true
+                            },
+                            {
+                                "function": "cffRawStringForNumeric",
+                                "column": "2938be38-6fd0-40ba-b40f-7c9fe8401e7a",
+                                "value": null,
+                                "index": 1
+                            }
+                        ]
+                    }
+                ],
+                "isDisplayedInSelect": true,
+                "multilingual": null,
+                "isCustom": null,
+                "isParameterized": null,
+                "children": null
+            },
+            {
+                "guid": "a27c9d37-a32e-41bc-9918-fbcdbd55ef67",
+                "visible": false,
+                "path": "Registration",
+                "api": "registrations",
+                "field": "alphaMark",
+                "label": {
+                    "en": "Alpha mark",
+                    "fr": "Note alphanumérique"
+                },
+                "defaultLabel": {
+                    "en": "Alpha mark",
+                    "fr": "Note alphanumérique"
+                },
+                "modelName": "Registration",
+                "modelDestName": null,
+                "isReverted": null,
+                "type": "string",
+                "order": 11,
+                "orderGlobal": 6,
                 "excluded": null,
                 "isDisplayedInSelect": false,
                 "multilingual": false,
@@ -389,292 +764,48 @@
                         "modelDestName": null,
                         "isReverted": null,
                         "type": "integer",
-                        "order": 10,
-                        "orderGlobal": 8,
+                        "order": 14,
+                        "orderGlobal": 10,
                         "excluded": null,
                         "isDisplayedInSelect": false,
                         "multilingual": false,
                         "isCustom": false,
                         "isParameterized": true,
                         "children": null
+                    },
+                    {
+                        "guid": "9899546a-13e1-487d-bd41-7ef5e20d69b0",
+                        "visible": false,
+                        "path": "Registration-person",
+                        "api": "persons",
+                        "field": "LOGIN",
+                        "label": {
+                            "en": "Person.Login",
+                            "fr": "Individu.Login"
+                        },
+                        "defaultLabel": {
+                            "en": "Login",
+                            "fr": "Login"
+                        },
+                        "modelName": "Person",
+                        "modelDestName": null,
+                        "isReverted": null,
+                        "type": "string",
+                        "order": 15,
+                        "orderGlobal": 5,
+                        "excluded": null,
+                        "isDisplayedInSelect": true,
+                        "multilingual": false,
+                        "isCustom": true,
+                        "isParameterized": null,
+                        "children": null
                     }
                 ]
-            },
-            {
-                "guid": "a27c9d37-a32e-41bc-9918-fbcdbd55ef67",
-                "visible": false,
-                "path": "Registration",
-                "api": "registrations",
-                "field": "alphaMark",
-                "label": {
-                    "en": "Alpha mark",
-                    "fr": "Note alphanumérique"
-                },
-                "defaultLabel": {
-                    "en": "Alpha mark",
-                    "fr": "Note alphanumérique"
-                },
-                "modelName": "Registration",
-                "modelDestName": null,
-                "isReverted": null,
-                "type": "string",
-                "order": 12,
-                "orderGlobal": 6,
-                "excluded": null,
-                "isDisplayedInSelect": false,
-                "multilingual": false,
-                "isCustom": false,
-                "isParameterized": null,
-                "children": null
-            },
-            {
-                "guid": "fcddbeda-0fb4-48b1-9ac9-bbef5612180d",
-                "visible": true,
-                "path": null,
-                "api": null,
-                "field": "calculatedField",
-                "label": {
-                    "en": "Mark",
-                    "fr": "Note"
-                },
-                "defaultLabel": {
-                    "en": "Calculated field 1",
-                    "fr": "Champ calculé 1"
-                },
-                "modelName": null,
-                "modelDestName": null,
-                "isReverted": null,
-                "calculated": true,
-                "type": "string",
-                "order": 3,
-                "orderGlobal": 4,
-                "excluded": null,
-                "operations": [
-                    {
-                        "operation": "cfoCaseIfNull",
-                        "parameters": [
-                            {
-                                "function": "cffRawString",
-                                "column": "6f878063-7f57-4623-8b1e-9cba7bad3cd7",
-                                "value": null,
-                                "index": 0
-                            },
-                            {
-                                "function": "cffRawStringForNumeric",
-                                "column": "2938be38-6fd0-40ba-b40f-7c9fe8401e7a",
-                                "value": null,
-                                "index": 1
-                            }
-                        ]
-                    }
-                ],
-                "isDisplayedInSelect": true,
-                "multilingual": null,
-                "isCustom": null,
-                "isParameterized": null,
-                "children": null
-            },
-            {
-                "guid": "5bd0f601-1f9e-4fff-8987-8873d81e466d",
-                "visible": false,
-                "path": null,
-                "api": null,
-                "field": "calculatedField",
-                "label": {
-                    "en": "Calculated field 2",
-                    "fr": "VA.ToutesLettres"
-                },
-                "defaultLabel": {
-                    "en": "Calculated field 2",
-                    "fr": "Champ calculé 2"
-                },
-                "modelName": null,
-                "modelDestName": null,
-                "isReverted": null,
-                "calculated": true,
-                "type": "string",
-                "order": 4,
-                "orderGlobal": null,
-                "excluded": null,
-                "operations": [
-                    {
-                        "operation": "cfoEqual",
-                        "parameters": [
-                            {
-                                "function": "cffRawString",
-                                "column": "a27c9d37-a32e-41bc-9918-fbcdbd55ef67",
-                                "value": null,
-                                "index": 0
-                            },
-                            {
-                                "function": "cffRawString",
-                                "column": null,
-                                "value": "VA",
-                                "index": 1
-                            }
-                        ]
-                    },
-                    {
-                        "operation": "cfoIfTrueThenString",
-                        "parameters": [
-                            {
-                                "function": "cffRaw",
-                                "column": null,
-                                "value": null,
-                                "index": 0,
-                                "previousOperation": true
-                            },
-                            {
-                                "function": "cffRawString",
-                                "column": null,
-                                "value": "Validé",
-                                "index": 1
-                            }
-                        ]
-                    }
-                ],
-                "isDisplayedInSelect": true,
-                "multilingual": null,
-                "isCustom": null,
-                "isParameterized": null,
-                "children": null
-            },
-            {
-                "guid": "383720b2-9bf4-4fdc-8fc3-5e0dd7bc3fa3",
-                "visible": false,
-                "path": null,
-                "api": null,
-                "field": "calculatedField",
-                "label": {
-                    "en": "Calculated field 3",
-                    "fr": "NV.ToutesLettres"
-                },
-                "defaultLabel": {
-                    "en": "Calculated field 3",
-                    "fr": "Champ calculé 3"
-                },
-                "modelName": null,
-                "modelDestName": null,
-                "isReverted": null,
-                "calculated": true,
-                "type": "string",
-                "order": 5,
-                "orderGlobal": null,
-                "excluded": null,
-                "operations": [
-                    {
-                        "operation": "cfoEqual",
-                        "parameters": [
-                            {
-                                "function": "cffRawString",
-                                "column": "a27c9d37-a32e-41bc-9918-fbcdbd55ef67",
-                                "value": null,
-                                "index": 0
-                            },
-                            {
-                                "function": "cffRawString",
-                                "column": null,
-                                "value": "NV",
-                                "index": 1
-                            }
-                        ]
-                    },
-                    {
-                        "operation": "cfoIfTrueThenString",
-                        "parameters": [
-                            {
-                                "function": "cffRaw",
-                                "column": null,
-                                "value": null,
-                                "index": 0,
-                                "previousOperation": true
-                            },
-                            {
-                                "function": "cffRawString",
-                                "column": null,
-                                "value": "Non validé",
-                                "index": 1
-                            }
-                        ]
-                    }
-                ],
-                "isDisplayedInSelect": true,
-                "multilingual": null,
-                "isCustom": null,
-                "isParameterized": null,
-                "children": null
-            },
-            {
-                "guid": "6f878063-7f57-4623-8b1e-9cba7bad3cd7",
-                "visible": false,
-                "path": null,
-                "api": null,
-                "field": "calculatedField",
-                "label": {
-                    "en": "Calculated field 4",
-                    "fr": "Concat.VA.NV.ToutesLettres"
-                },
-                "defaultLabel": {
-                    "en": "Calculated field 4",
-                    "fr": "Champ calculé 4"
-                },
-                "modelName": null,
-                "modelDestName": null,
-                "isReverted": null,
-                "calculated": true,
-                "type": "string",
-                "order": 6,
-                "orderGlobal": null,
-                "excluded": null,
-                "operations": [
-                    {
-                        "operation": "cfoConcat",
-                        "parameters": [
-                            {
-                                "function": "cffRawString",
-                                "column": "5bd0f601-1f9e-4fff-8987-8873d81e466d",
-                                "value": null,
-                                "index": 0
-                            },
-                            {
-                                "function": "cffRawString",
-                                "column": "383720b2-9bf4-4fdc-8fc3-5e0dd7bc3fa3",
-                                "value": null,
-                                "index": 1
-                            }
-                        ]
-                    }
-                ],
-                "isDisplayedInSelect": true,
-                "multilingual": null,
-                "isCustom": null,
-                "isParameterized": null,
-                "children": null
             }
         ],
         "filters": {
             "booleanOperator": "and",
             "conditions": [
-                {
-                    "guid": "fcddbeda-0fb4-48b1-9ac9-bbef5612180d",
-                    "visible": null,
-                    "path": null,
-                    "api": null,
-                    "field": "calculatedField",
-                    "label": null,
-                    "defaultLabel": null,
-                    "modelName": null,
-                    "modelDestName": null,
-                    "isReverted": null,
-                    "type": null,
-                    "order": null,
-                    "orderGlobal": null,
-                    "excluded": null,
-                    "operator": "notEqual",
-                    "value": [],
-                    "isParameterized": false,
-                    "ignoreParameterized": false
-                },
                 {
                     "guid": "df564842-1b1a-473a-810e-fdf884fba553",
                     "visible": null,
@@ -700,8 +831,85 @@
             ]
         },
         "hiddenFilters": null,
-        "subQueries": [],
-        "joinSameFields": null,
+        "subQueries": [
+            {
+                "modelName": "ViewObligationTree",
+                "api": "viewObligationTrees",
+                "lang": null,
+                "queryTitle": {},
+                "filtersCustom": {
+                    "id": null,
+                    "customAttributes": null,
+                    "externalCode": null,
+                    "objectSharingDomains": null,
+                    "queryFilter": null
+                },
+                "columns": [
+                    {
+                        "guid": "9efe5517-9872-4cf4-8fd1-4aaee1cd06e8",
+                        "visible": false,
+                        "path": "ViewObligationTree",
+                        "api": "viewObligationTrees",
+                        "field": "code",
+                        "label": {
+                            "en": "Pedagogical component",
+                            "fr": "Composant pédagogique"
+                        },
+                        "defaultLabel": {
+                            "en": "Code",
+                            "fr": "Code"
+                        },
+                        "modelName": "ViewObligationTree",
+                        "modelDestName": null,
+                        "isReverted": null,
+                        "type": "code",
+                        "order": 1,
+                        "orderGlobal": 17,
+                        "excluded": null,
+                        "isDisplayedInSelect": true,
+                        "multilingual": false,
+                        "isCustom": false,
+                        "isParameterized": null,
+                        "children": null
+                    },
+                    {
+                        "guid": "c08c4d02-ee15-42e9-bfe6-974ff62c20cb",
+                        "visible": true,
+                        "path": "ViewObligationTree",
+                        "api": "viewObligationTrees",
+                        "field": "obligationRelationParentCoefficient",
+                        "label": {
+                            "en": "Coef",
+                            "fr": "Coef"
+                        },
+                        "defaultLabel": {
+                            "en": "Coefficient",
+                            "fr": "Coefficient"
+                        },
+                        "modelName": "ViewObligationTree",
+                        "modelDestName": null,
+                        "isReverted": null,
+                        "type": "numeric",
+                        "order": 0,
+                        "orderGlobal": 3,
+                        "excluded": null,
+                        "isDisplayedInSelect": false,
+                        "multilingual": false,
+                        "isCustom": false,
+                        "isParameterized": null,
+                        "children": null
+                    }
+                ],
+                "filters": null,
+                "hiddenFilters": null,
+                "subQueries": [],
+                "joinSameFields": null,
+                "excluded": false,
+                "order": null,
+                "joinSameModel": false
+            }
+        ],
+        "joinSameFields": true,
         "excluded": true
     },
     "searchResultGlobal": {
